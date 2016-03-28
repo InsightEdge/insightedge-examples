@@ -5,7 +5,7 @@ import com.gigaspaces.spark.implicits._
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
-  * Loads Products from Data Grid as DataFrame and run filtering.
+  * Loads Products from Data Grid as DataFrame and runs filtering.
   */
 object LoadDataFrame {
 
