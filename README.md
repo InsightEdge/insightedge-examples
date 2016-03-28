@@ -11,11 +11,17 @@ This project contains examples of how standard Spark applications can use Data G
 ## Requirements
 * Java 1.8
 * Scala 2.10
+* Maven 3.1+
 * SBT 0.13
 * InsightEdge distribution
 
 
 ## Building project
+
+InsightEdge jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have Maven installed and then run:
+```bash
+./sbin/insightedge-maven.sh
+```
 
 This project is based on SBT, so to build it run the next command:
 
@@ -66,7 +72,7 @@ You can build the project and submit examples as Spark applications with the nex
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 ./bin/insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
-    {repository}/target/scala-2.10/insightedge-examples*.jar \
+    /home/user/Git/insightedge-examples/target/scala-2.10/insightedge-examples.jar \
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```
 
