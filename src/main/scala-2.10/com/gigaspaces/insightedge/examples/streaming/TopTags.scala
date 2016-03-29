@@ -14,12 +14,14 @@ case class TopTags(
                     var id: String,
 
                     @BeanProperty
-                    @SpaceProperty
-                    var tagsCount: java.util.Map[Int, String]
+                    var tagsCount: java.util.Map[Int, String],
+
+                    @BeanProperty
+                    var batchTime: Long
 
                   ) {
 
-  def this(tagsCount: java.util.Map[Int, String]) = this(null, tagsCount)
+  def this(tagsCount: java.util.Map[Int, String]) = this(null, tagsCount, System.currentTimeMillis)
 
   def this() = this(null)
 
