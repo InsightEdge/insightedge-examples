@@ -89,4 +89,7 @@ project/plugins/project/
 .scala_dependencies
 .worksheet
 
+# Maven specific
+dependency-reduced-pom.xml
+
 # Created by .ignore support plugin (hsz.mobi)

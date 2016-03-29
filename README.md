@@ -12,7 +12,7 @@ This project contains examples of how standard Spark applications can use Data G
 * Java 1.8
 * Scala 2.10
 * Maven 3.1+
-* SBT 0.13
+* SBT 0.13 (optional)
 * InsightEdge distribution
 
 
@@ -23,9 +23,13 @@ InsightEdge jars are not published to Maven Central Repository yet. To install a
 ./sbin/insightedge-maven.sh
 ```
 
-This project is based on SBT, so to build it run the next command:
+This project has both SBT and Maven configurations. You can build it with next commands::
 
 ```bash
+# Maven
+mvn clean test package
+
+# SBT
 sbt clean test assembly
 ```
 
