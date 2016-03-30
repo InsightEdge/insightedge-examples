@@ -1,26 +1,26 @@
 package com.gigaspaces.insightedge.examples.streaming
 
 import com.gigaspaces.scala.annotation._
+import com.gigaspaces.spark.model.GridModel
 
 import scala.beans.BeanProperty
 
 /**
   * @author Oleksiy_Dyagilev
   */
-case class TopTags(
+case class HashTag(
 
                     @SpaceId(autoGenerate = true)
                     @BeanProperty
                     var id: String,
 
                     @BeanProperty
-                    @SpaceProperty
-                    var tagsCount: java.util.Map[Int, String]
+                    var tag: String
 
                   ) {
 
-  def this(tagsCount: java.util.Map[Int, String]) = this(null, tagsCount)
+  def this(tag: String) = this(null, tag)
 
-  def this() = this(null)
+  def this() = this(null, null)
 
 }

@@ -7,20 +7,22 @@ import scala.beans.BeanProperty
 /**
   * @author Oleksiy_Dyagilev
   */
-case class HashTag(
+case class TopTags(
 
                     @SpaceId(autoGenerate = true)
                     @BeanProperty
                     var id: String,
 
                     @BeanProperty
-                    @SpaceProperty
-                    var tag: String
+                    var tagsCount: java.util.Map[Int, String],
+
+                    @BeanProperty
+                    var batchTime: Long
 
                   ) {
 
-  def this(tag: String) = this(null, tag)
+  def this(tagsCount: java.util.Map[Int, String]) = this(null, tagsCount, System.currentTimeMillis)
 
-  def this() = this(null, null)
+  def this() = this(null)
 
 }

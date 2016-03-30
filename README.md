@@ -12,7 +12,7 @@ This project contains examples of how standard Spark applications can use Data G
 * Java 1.8
 * Scala 2.10
 * Maven 3.1+
-* SBT 0.13
+* SBT 0.13 (optional)
 * InsightEdge distribution
 
 
@@ -23,10 +23,14 @@ InsightEdge jars are not published to Maven Central Repository yet. To install a
 ./sbin/insightedge-maven.sh
 ```
 
-This project is based on SBT, so to build it run the next command:
+This project has both SBT and Maven configurations. You can build it with next commands::
 
 ```bash
-sbt clean package
+# Maven
+mvn clean test package
+
+# SBT
+sbt clean test assembly
 ```
 
 
@@ -72,9 +76,11 @@ You can build the project and submit examples as Spark applications with the nex
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 ./bin/insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
-    /home/user/Git/insightedge-examples/target/scala-2.10/insightedge-examples.jar \
+    /home/user/Git/insightedge-examples/target/insightedge-examples.jar \
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```
+
+> Note that running `TwitterPopularTags` example requires you to pass [Twitter app tokens](https://apps.twitter.com/) as arguments
 
 #### Stopping local environment
 
