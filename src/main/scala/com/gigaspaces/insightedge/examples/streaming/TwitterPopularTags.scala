@@ -11,6 +11,7 @@ import org.apache.spark.streaming.twitter._
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 
 import scala.collection.JavaConverters._
+import scala.collection.JavaConversions._
 
 
 /**
@@ -73,6 +74,13 @@ object TwitterPopularTags {
     println("Popular topics for each 10 seconds (last hour):")
     lastHourTopTags
       .sortBy(_.batchTime, ascending = false)
-      .foreach { top => println(s"${new Date(top.batchTime)} top tag: ${top.getTagsCount.getOrDefault(1, "none")}") }
+      .foreach {top => println(s"${new Date(top.batchTime)} - top tag (${maxKey(top.tagsCount)}): ${top.tagsCount.getOrDefault(maxKey(top.tagsCount), "none")}") }
+  }
+
+  def maxKey(map: java.util.Map[Int, String]): Int = {
+    map.keySet().asScala match {
+      case keys if keys.isEmpty => 0
+      case keys => keys.max
+    }
   }
 }
