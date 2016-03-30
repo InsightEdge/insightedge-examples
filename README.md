@@ -92,4 +92,8 @@ To stop all InsightEdge components, next command can be executed:
 
 ## Troubleshooting
 
-If you have any troubles running the example applications, please, contact us via contact form at [InsightEdge main page](http://insightedge.io/).
+If you have any troubles running the example applications, please, contact us with:
+- Slack channel using [invitation](http://insightedge-slack.herokuapp.com/)
+- StackOverflow [insightedge tag](http://stackoverflow.com/questions/tagged/insightedge)
+- contact form at [InsightEdge main page](http://insightedge.io/)
+- or [email message](mailto:hello@insightedge.io)
