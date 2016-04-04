@@ -1,10 +1,10 @@
 name := "insightedge-examples"
 
-version := "0.3.0"
+version := "0.4.0-SNAPSHOT"
 
 scalaVersion := "2.10.6"
 
-val insightEdgeVersion = "0.3.0"
+val insightEdgeVersion = "0.4.0-SNAPSHOT"
 
 resolvers += Resolver.mavenLocal
 
