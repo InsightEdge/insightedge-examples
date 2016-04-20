@@ -1,6 +1,6 @@
 package com.gigaspaces.insightedge.examples
 
-import com.gigaspaces.insightedge.examples.basic.{LoadDataFrame, LoadRdd, LoadRddWithSql, SaveRdd}
+import com.gigaspaces.insightedge.examples.basic._
 import com.gigaspaces.insightedge.examples.mllib.SaveAndLoadMLModel
 import com.gigaspaces.insightedge.examples.offheap.OffHeapPersistence
 import org.openspaces.core.space.EmbeddedSpaceConfigurer
@@ -29,6 +29,10 @@ class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with Before
 
   it("should successfully load DataFrame from Data Grid") {
     LoadDataFrame.main(args)
+  }
+
+  it("should successfully persist DataFrame to Data Grid") {
+    PersistDataFrame.main(args)
   }
 
   it("should successfully save and load MLModel to/from from Data Grid") {
