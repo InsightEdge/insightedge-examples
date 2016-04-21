@@ -23,7 +23,7 @@ InsightEdge jars are not published to Maven Central Repository yet. To install a
 ./sbin/insightedge-maven.sh
 ```
 
-This project has both SBT and Maven configurations. You can build it with next commands::
+This project has both SBT and Maven configurations. You can build it with next commands:
 
 ```bash
 # Maven
