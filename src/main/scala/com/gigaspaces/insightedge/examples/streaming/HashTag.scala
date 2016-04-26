@@ -17,7 +17,7 @@ case class HashTag(
                     @BeanProperty
                     var tag: String
 
-                  ) {
+                  ) extends GridModel {
 
   def this(tag: String) = this(null, tag)
 
