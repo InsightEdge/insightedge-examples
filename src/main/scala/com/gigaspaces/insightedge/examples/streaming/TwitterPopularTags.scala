@@ -11,7 +11,6 @@ import org.apache.spark.streaming.twitter._
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
 
 import scala.collection.JavaConverters._
-import scala.collection.JavaConversions._
 
 
 /**
@@ -24,13 +23,14 @@ import scala.collection.JavaConversions._
 object TwitterPopularTags {
 
   def main(args: Array[String]) {
-    if (args.length < 7) {
-      System.err.println("Usage: TwitterPopularTags <spark master url> <consumer key> <consumer secret> " +
-        "<access token> <access token secret> <space name> <space locator>")
+    val settings = if (args.length == 4) Array("spark://127.0.0.1:7077", args(0), args(1), args(2), args(3), "insightedge-space", "insightedge", "127.0.0.1:4174") else args
+    if (settings.length < 8) {
+      System.err.println("Usage (custom cluster): TwitterPopularTags <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name> <space groups> <space locator>")
+      System.err.println("Usage (default cluster): TwitterPopularTags <consumer key> <consumer secret> <access token> <access token secret>")
       System.exit(1)
     }
 
-    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, spaceName, spaceLocator) = args.take(7)
+    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, spaceName, spaceGroups, spaceLocator) = settings.take(8)
 
     // Set the system properties so that Twitter4j library used by twitter stream
     // can use them to generate OAuth credentials
@@ -39,7 +39,7 @@ object TwitterPopularTags {
     System.setProperty("twitter4j.oauth.accessToken", accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
-    val gsConfig = GigaSpacesConfig(spaceName, None, Some(spaceLocator))
+    val gsConfig = GigaSpacesConfig(spaceName, Some(spaceGroups), Some(spaceLocator))
     val sparkConf = new SparkConf().setAppName("TwitterPopularTags").setMaster(masterUrl).setGigaSpaceConfig(gsConfig)
 
     val ssc = new StreamingContext(sparkConf, Seconds(2))
@@ -74,7 +74,7 @@ object TwitterPopularTags {
     println("Popular topics for each 10 seconds (last hour):")
     lastHourTopTags
       .sortBy(_.batchTime, ascending = false)
-      .foreach {top => println(s"${new Date(top.batchTime)} - top tag (${maxKey(top.tagsCount)}): ${top.tagsCount.getOrDefault(maxKey(top.tagsCount), "none")}") }
+      .foreach { top => println(s"${new Date(top.batchTime)} - top tag (${maxKey(top.tagsCount)}): ${top.tagsCount.getOrDefault(maxKey(top.tagsCount), "none")}") }
   }
 
   def maxKey(map: java.util.Map[Int, String]): Int = {
