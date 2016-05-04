@@ -80,6 +80,12 @@ For example, `SaveRDD` can be submitted with the next syntax:
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```
 
+If you are running local cluster with default settings (see [Running Examples](#running-examples)), you can omit arguments:
+```bash
+./bin/insightedge-submit --class {main class name} --master {Spark master URL} \
+    {insightedge-examples.jar location}
+```
+
 > Note that running `TwitterPopularTags` example requires you to pass [Twitter app tokens](https://apps.twitter.com/) as arguments
 
 #### Stopping local environment
