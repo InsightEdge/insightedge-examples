@@ -1,8 +1,7 @@
 package com.gigaspaces.insightedge.examples.mllib
 
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
-import com.gigaspaces.spark.mllib.implicits._
+import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.{SparkConf, SparkContext}
