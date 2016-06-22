@@ -44,7 +44,7 @@ class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with Before
   }
 
   override protected def beforeAll() = {
-    datagrid = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("insightedge-examples-space").lookupGroups("insightedge")).create()
+    datagrid = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("insightedge-examples-space").lookupGroups("insightedge").lookupLocators(lookupLocator)).create()
   }
 
 }
