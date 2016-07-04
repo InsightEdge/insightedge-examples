@@ -1,6 +1,7 @@
 package com.gigaspaces.insightedge.examples
 
 import com.gigaspaces.insightedge.examples.basic._
+import com.gigaspaces.insightedge.examples.geospatial.{LoadDataFrameWithGeospatial, LoadRddWithGeospatial}
 import com.gigaspaces.insightedge.examples.mllib.SaveAndLoadMLModel
 import com.gigaspaces.insightedge.examples.offheap.OffHeapPersistence
 import org.openspaces.core.space.EmbeddedSpaceConfigurer
@@ -41,6 +42,14 @@ class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with Before
 
   it("should successfully persist to Data Grid") {
     OffHeapPersistence.main(args)
+  }
+
+  it("should successfully load rdd with geospatial SQL") {
+    LoadRddWithGeospatial.main(args)
+  }
+
+  it("should successfully load dataframe with geospatial SQL") {
+    LoadDataFrameWithGeospatial.main(args)
   }
 
   override protected def beforeAll() = {
