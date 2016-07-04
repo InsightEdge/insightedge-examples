@@ -1,8 +1,7 @@
 package com.gigaspaces.insightedge.examples.basic
 
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
-import org.apache.spark.sql.insightedge._
+import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.sql.{SQLContext, SaveMode}
 import org.apache.spark.{SparkConf, SparkContext}
 

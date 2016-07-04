@@ -1,10 +1,9 @@
 package com.gigaspaces.insightedge.examples.basic
 
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
+import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.insightedge._
 
 /**
   * Loads Products from Data Grid as DataFrame and runs filtering.
