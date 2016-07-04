@@ -2,7 +2,7 @@ package com.gigaspaces.insightedge.examples.offheap
 
 import com.gigaspaces.insightedge.examples.basic.Product
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
+import com.gigaspaces.spark.implicits.basic._
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
 

@@ -4,8 +4,7 @@ import java.util
 import java.util.Date
 
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
-import com.gigaspaces.spark.streaming.implicits._
+import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.twitter._
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}

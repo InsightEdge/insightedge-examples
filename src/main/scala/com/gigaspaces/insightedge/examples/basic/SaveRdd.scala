@@ -1,8 +1,7 @@
 package com.gigaspaces.insightedge.examples.basic
 
 import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits._
-import com.gigaspaces.spark.utils.GigaSpaceUtils
+import com.gigaspaces.spark.implicits.basic._
 import org.apache.spark.{SparkContext, SparkConf}
 
 import scala.util.Random
