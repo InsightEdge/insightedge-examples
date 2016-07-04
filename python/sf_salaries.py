@@ -24,7 +24,7 @@ sc = SparkContext(conf=conf)
 sqlContext = SQLContext(sc)
 
 # load SF salaries dataset from file
-jsonFilePath = os.path.join(os.environ["SPARK_HOME"], "data/sf_salaries_sample.json")
+jsonFilePath = os.path.join(os.environ["INSIGHTEDGE_HOME"], "data/sf_salaries_sample.json")
 jsonDf = sqlContext.read.json(jsonFilePath)
 
 # save DataFrame to the grid
