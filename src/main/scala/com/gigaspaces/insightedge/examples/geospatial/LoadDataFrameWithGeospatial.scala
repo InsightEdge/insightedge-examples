@@ -22,7 +22,7 @@ object LoadDataFrameWithGeospatial {
     }
     val Array(master, space, groups, locators) = settings
     val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-rdd-geospatial").setMaster(master).setGigaSpaceConfig(gsConfig))
+    val sc = new SparkContext(new SparkConf().setAppName("example-load-dataframe-geospatial").setMaster(master).setGigaSpaceConfig(gsConfig))
 
     val stations = (1 to 100000).map { i => GasStation(i, "Station" + i, randomPoint(-50, 50)) }
     println(s"Saving ${stations.size} gas stations RDD to the space")
