@@ -1,4 +1,5 @@
 import sys
+import os
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SQLContext
 
@@ -23,8 +24,7 @@ sc = SparkContext(conf=conf)
 sqlContext = SQLContext(sc)
 
 # load SF salaries dataset from file
-# jsonFilePath = os.environ["ZEPPELIN_HOME"] + "/../data/sf_salaries_sample.json"
-jsonFilePath = "/home/fe2s/Downloads/sf_salaries_sample.json"
+jsonFilePath = os.path.join(os.environ["SPARK_HOME"], "data/sf_salaries_sample.json")
 jsonDf = sqlContext.read.json(jsonFilePath)
 
 # save DataFrame to the grid
@@ -44,7 +44,7 @@ averagePay = sqlContext.sql(
        WHERE Year = 2012
        GROUP BY JobTitle
        ORDER BY AVG(TotalPay) DESC
-       LIMIT 5""")
+       LIMIT 15""")
 
 for each in averagePay.collect():
     print("%s: %s" % (each[0], each[1]))
