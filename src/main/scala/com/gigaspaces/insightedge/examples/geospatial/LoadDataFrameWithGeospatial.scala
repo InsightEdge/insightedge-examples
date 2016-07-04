@@ -30,8 +30,9 @@ object LoadDataFrameWithGeospatial {
 
     val sqlContext = new SQLContext(sc)
     val userLocation = ShapeFactory.point(10, 10)
+    val searchArea = ShapeFactory.circle(userLocation, 10)
     val df = sqlContext.read.grid.loadClass[GasStation]
-    val countNearby = df.filter(df("location") geoWithin ShapeFactory.circle(userLocation, 10)).count()
+    val countNearby = df.filter(df("location") geoWithin searchArea).count()
     println(s"Number of stations within 10 radius around user: $countNearby")
 
     sc.stopGigaSpacesContext()

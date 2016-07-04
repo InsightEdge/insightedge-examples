@@ -28,7 +28,8 @@ object LoadRddWithGeospatial {
     sc.parallelize(stations).saveToGrid()
 
     val userLocation = ShapeFactory.point(10, 10)
-    val stationsNearby = sc.gridSql[GasStation]("location spatial:within ?", Seq(ShapeFactory.circle(userLocation, 10)))
+    val searchArea = ShapeFactory.circle(userLocation, 10)
+    val stationsNearby = sc.gridSql[GasStation]("location spatial:within ?", Seq(searchArea))
     println(s"Number of stations within 10 radius around user: ${stationsNearby.count()}")
 
     sc.stopGigaSpacesContext()
