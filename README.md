@@ -76,7 +76,7 @@ You can build the project and submit examples as Spark applications with the nex
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 ./bin/insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
-    /home/user/Git/insightedge-examples/target/insightedge-examples.jar \
+    ./quickstart/scala/insightedge-examples.jar \
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```
 
@@ -87,6 +87,18 @@ If you are running local cluster with default settings (see [Running Examples](#
 ```
 
 > Note that running `TwitterPopularTags` example requires you to pass [Twitter app tokens](https://apps.twitter.com/) as arguments
+
+#### Python examples
+
+You can run Python examples with
+```bash
+./bin/insightedge-submit --master {Spark master URL} {path to .py file}
+```
+
+For example,
+```bash
+./bin/insightedge-submit --master spark://127.0.0.1:7077 ./quickstart/python/sf_salaries.py
+```
 
 #### Stopping local environment
 
