@@ -7,7 +7,7 @@ conf = SparkConf()
 conf.setAppName("SF Salaries Example")
 
 # InsightEdge config
-if len(sys.argv) < 3:
+if len(sys.argv) < 4:
     spaceName = "insightedge-space"
     lookupGroup = "insightedge"
     lookupLocator = "127.0.0.1:4174"
@@ -15,6 +15,8 @@ else:
     spaceName = sys.argv[1]
     lookupGroup = sys.argv[2]
     lookupLocator = sys.argv[3]
+
+print("InsightEdge config: %s %s %s" % (spaceName, lookupGroup, lookupLocator))
 
 conf.set("spark.gigaspaces.space.name", spaceName)
 conf.set("spark.gigaspaces.space.lookup.group", lookupGroup)
