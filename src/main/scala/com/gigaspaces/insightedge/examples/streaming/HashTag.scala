@@ -1,7 +1,6 @@
 package com.gigaspaces.insightedge.examples.streaming
 
 import com.gigaspaces.scala.annotation._
-import com.gigaspaces.spark.model.GridModel
 
 import scala.beans.BeanProperty
 
@@ -17,7 +16,7 @@ case class HashTag(
                     @BeanProperty
                     var tag: String
 
-                  ) extends GridModel {
+                  ) {
 
   def this(tag: String) = this(null, tag)
 
