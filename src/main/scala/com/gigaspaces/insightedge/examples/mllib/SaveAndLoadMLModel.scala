@@ -26,7 +26,7 @@ object SaveAndLoadMLModel {
     println(s"Saving ${model.getClass.getSimpleName} to the datagrid")
     model.saveToGrid(sc, modelName)
     println(s"Loading $modelName from the datagrid")
-    val loadedModel = sc.loadMLModel[KMeansModel](modelName).get
+    val loadedModel = sc.loadMLInstance[KMeansModel](modelName).get
     println(s"Model ${loadedModel.getClass.getSimpleName} is loaded")
     sc.stopGigaSpacesContext()
   }
