@@ -7,6 +7,7 @@ scalaVersion := "2.10.6"
 val insightEdgeVersion = "0.4.0-SNAPSHOT"
 
 resolvers += Resolver.mavenLocal
+resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
 
 libraryDependencies ++= Seq(
   "com.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided",
