@@ -20,7 +20,11 @@ This project contains examples of how standard Spark applications can use Data G
 
 InsightEdge jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have Maven installed and then run:
 ```bash
+# Linux:
 ./sbin/insightedge-maven.sh
+
+# Windows:
+sbin\insightedge-maven.cmd
 ```
 
 This project has both SBT and Maven configurations. You can build it with next commands:
@@ -45,7 +49,11 @@ There are several options how you can run examples:
 
 Prior to executing example application, you have to start the Data Grid and deploy an empty space on it. You can do it using `demo` mode:
 ```bash
+# Linux:
 ./sbin/insightedge.sh --mode demo
+
+# Windows:
+sbin\insightedge.cmd --mode demo
 ```
 
 Such command will start next components:
@@ -68,21 +76,38 @@ With this configuration, example will run on local Spark cluster and save the ge
 
 You can build the project and submit examples as Spark applications with the next command:
 ```bash
+# Linux:
 ./bin/insightedge-submit --class {main class name} --master {Spark master URL} \
     {insightedge-examples.jar location} \
+    {Spark master URL} {space name} {lookup group} {lookup locator}
+
+# Windows:
+bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
+    {insightedge-examples.jar location} ^
     {Spark master URL} {space name} {lookup group} {lookup locator}
 ```
 
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
+# Linux:
 ./bin/insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
     ./quickstart/scala/insightedge-examples.jar \
+    spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
+
+# Windows:
+bin\insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
+    quickstart\scala\insightedge-examples.jar ^
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```
 
 If you are running local cluster with default settings (see [Running Examples](#running-examples)), you can omit arguments:
 ```bash
+# Linux:
 ./bin/insightedge-submit --class {main class name} --master {Spark master URL} \
+    {insightedge-examples.jar location}
+
+# Windows:
+bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
     {insightedge-examples.jar location}
 ```
 
@@ -92,19 +117,31 @@ If you are running local cluster with default settings (see [Running Examples](#
 
 You can run Python examples with
 ```bash
+# Linux:
 ./bin/insightedge-submit --master {Spark master URL} {path to .py file}
+
+# Windows:
+bin\insightedge-submit --master {Spark master URL} {path to .py file}
 ```
 
 For example,
 ```bash
+# Linux:
 ./bin/insightedge-submit --master spark://127.0.0.1:7077 ./quickstart/python/sf_salaries.py
+
+# Windows:
+bin\insightedge-submit --master spark://127.0.0.1:7077 quickstart\python\sf_salaries.py
 ```
 
 #### Stopping local environment
 
 To stop all InsightEdge components, next command can be executed:
 ```bash
+# Linux:
 ./sbin/insightedge.sh --mode shutdown
+
+# Windows:
+sbin\insightedge.cmd --mode shutdown
 ```
 
 
