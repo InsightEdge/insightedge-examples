@@ -12,7 +12,7 @@ This project contains examples of how standard Spark applications can use Data G
 * Java 1.8
 * Scala 2.10
 * Maven 3.1+
-* SBT 0.13 (optional)
+* SBT 0.13.9+ (optional)
 * InsightEdge distribution
 
 
