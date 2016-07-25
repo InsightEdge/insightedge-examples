@@ -10,8 +10,8 @@ resolvers += Resolver.mavenLocal
 resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
 
 libraryDependencies ++= Seq(
-  "com.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided",
-  "com.gigaspaces.insightedge" % "gigaspaces-scala" % insightEdgeVersion % "provided",
+  "com.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
+  "com.gigaspaces.insightedge" % "gigaspaces-scala" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
   "org.apache.spark" %% "spark-streaming-twitter" % "1.6.0",
   "org.scalatest" %% "scalatest" % "2.0" % "test"
 )
