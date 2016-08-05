@@ -1,6 +1,7 @@
-package com.gigaspaces.insightedge.examples.basic
+package org.insightedge.examples.basic
 
-import com.gigaspaces.scala.annotation._
+import org.insightedge.scala.annotation._
+
 import scala.beans.{BeanProperty, BooleanBeanProperty}
 
 case class Product(

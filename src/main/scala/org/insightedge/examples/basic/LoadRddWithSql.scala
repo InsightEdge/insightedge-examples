@@ -1,8 +1,8 @@
-package com.gigaspaces.insightedge.examples.basic
+package org.insightedge.examples.basic
 
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.basic._
 import org.apache.spark.{SparkConf, SparkContext}
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.basic._
 
 /**
   * Partially loads Product RDD from Data Grid using SQL query (filter on Data Grid side) and prints objects count.
@@ -16,12 +16,12 @@ object LoadRddWithSql {
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
-    val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-rdd-sql").setMaster(master).setGigaSpaceConfig(gsConfig))
+    val config = InsightEdgeConfig(space, Some(groups), Some(locators))
+    val sc = new SparkContext(new SparkConf().setAppName("example-load-rdd-sql").setMaster(master).setInsightEdgeConfig(config))
 
     val rdd = sc.gridSql[Product]("quantity < 5")
     println(s"Number of products with quantity < 5: ${rdd.count()}")
-    sc.stopGigaSpacesContext()
+    sc.stopInsightEdgeContext()
   }
 
 }

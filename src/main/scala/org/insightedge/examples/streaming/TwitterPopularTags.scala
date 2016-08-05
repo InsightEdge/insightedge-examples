@@ -1,13 +1,13 @@
-package com.gigaspaces.insightedge.examples.streaming
+package org.insightedge.examples.streaming
 
 import java.util
 import java.util.Date
 
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.twitter._
 import org.apache.spark.streaming.{Minutes, Seconds, StreamingContext}
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.all._
 
 import scala.collection.JavaConverters._
 
@@ -38,8 +38,8 @@ object TwitterPopularTags {
     System.setProperty("twitter4j.oauth.accessToken", accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
-    val gsConfig = GigaSpacesConfig(spaceName, Some(spaceGroups), Some(spaceLocator))
-    val sparkConf = new SparkConf().setAppName("TwitterPopularTags").setMaster(masterUrl).setGigaSpaceConfig(gsConfig)
+    val ieConfig = InsightEdgeConfig(spaceName, Some(spaceGroups), Some(spaceLocator))
+    val sparkConf = new SparkConf().setAppName("TwitterPopularTags").setMaster(masterUrl).setInsightEdgeConfig(ieConfig)
 
     val ssc = new StreamingContext(sparkConf, Seconds(2))
 

@@ -1,9 +1,9 @@
-package com.gigaspaces.insightedge.examples
+package org.insightedge.examples
 
-import com.gigaspaces.insightedge.examples.basic._
-import com.gigaspaces.insightedge.examples.geospatial.{LoadDataFrameWithGeospatial, LoadRddWithGeospatial}
-import com.gigaspaces.insightedge.examples.mllib.SaveAndLoadMLModel
-import com.gigaspaces.insightedge.examples.offheap.OffHeapPersistence
+import org.insightedge.examples.basic._
+import org.insightedge.examples.geospatial.{LoadDataFrameWithGeospatial, LoadRddWithGeospatial}
+import org.insightedge.examples.mllib.SaveAndLoadMLModel
+import org.insightedge.examples.offheap.OffHeapPersistence
 import org.openspaces.core.space.EmbeddedSpaceConfigurer
 import org.openspaces.core.{GigaSpace, GigaSpaceConfigurer}
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSpec}
