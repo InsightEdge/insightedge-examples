@@ -1,10 +1,10 @@
-package com.gigaspaces.insightedge.examples.mllib
+package org.insightedge.examples.mllib
 
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.{SparkConf, SparkContext}
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.all._
 
 /**
   * Saves/reloads the ML model to/from Data Grid.
@@ -18,8 +18,8 @@ object SaveAndLoadMLModel {
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
-    val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-mllib").setMaster(master).setGigaSpaceConfig(gsConfig))
+    val config = InsightEdgeConfig(space, Some(groups), Some(locators))
+    val sc = new SparkContext(new SparkConf().setAppName("example-mllib").setMaster(master).setInsightEdgeConfig(config))
 
     val modelName = "decisionTreeModel"
     val model = createModel(sc)
@@ -28,7 +28,7 @@ object SaveAndLoadMLModel {
     println(s"Loading $modelName from the datagrid")
     val loadedModel = sc.loadMLInstance[KMeansModel](modelName).get
     println(s"Model ${loadedModel.getClass.getSimpleName} is loaded")
-    sc.stopGigaSpacesContext()
+    sc.stopInsightEdgeContext()
   }
 
   private def createModel(sc: SparkContext) = {

@@ -1,9 +1,9 @@
-package com.gigaspaces.insightedge.examples.basic
+package org.insightedge.examples.basic
 
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.all._
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.{SparkConf, SparkContext}
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.all._
 
 /**
   * Loads Products from Data Grid as DataFrame and runs filtering.
@@ -17,15 +17,15 @@ object LoadDataFrame {
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
-    val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-dataframe").setMaster(master).setGigaSpaceConfig(gsConfig))
+    val config = InsightEdgeConfig(space, Some(groups), Some(locators))
+    val sc = new SparkContext(new SparkConf().setAppName("example-load-dataframe").setMaster(master).setInsightEdgeConfig(config))
 
     val sqlContext = new SQLContext(sc)
     val df = sqlContext.read.grid.loadClass[Product]
     df.printSchema()
     val count = df.filter(df("quantity") < 5).count()
     println(s"Number of products with quantity < 5: $count")
-    sc.stopGigaSpacesContext()
+    sc.stopInsightEdgeContext()
   }
 
 }

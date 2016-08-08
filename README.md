@@ -90,12 +90,12 @@ bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 # Linux:
-./bin/insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
+./bin/insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
     ./quickstart/scala/insightedge-examples.jar \
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 
 # Windows:
-bin\insightedge-submit --class com.gigaspaces.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
+bin\insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
     quickstart\scala\insightedge-examples.jar ^
     spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
 ```

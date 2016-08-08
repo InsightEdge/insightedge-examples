@@ -1,10 +1,10 @@
-package com.gigaspaces.insightedge.examples.offheap
+package org.insightedge.examples.offheap
 
-import com.gigaspaces.insightedge.examples.basic.Product
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.basic._
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
+import org.insightedge.examples.basic.Product
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.basic._
 
 import scala.util.Random
 
@@ -20,12 +20,12 @@ object OffHeapPersistence {
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
-    val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
+    val config = InsightEdgeConfig(space, Some(groups), Some(locators))
     val sparkConfig = new SparkConf()
       .setAppName("example-offheap")
       .setMaster(master)
-      .setGigaSpaceConfig(gsConfig)
-      .set("spark.externalBlockStore.blockManager", "org.apache.spark.storage.GigaSpacesBlockManager")
+      .setInsightEdgeConfig(config)
+      .set("spark.externalBlockStore.blockManager", "org.apache.spark.storage.InsightEdgeBlockManager")
     val sc = new SparkContext(sparkConfig)
 
     val rdd = sc.parallelize((1 to 10).map { i =>
@@ -38,7 +38,7 @@ object OffHeapPersistence {
 
     println(s"Counting products after persist: ${rdd.count()}")
 
-    sc.stopGigaSpacesContext()
+    sc.stopInsightEdgeContext()
   }
 
 }

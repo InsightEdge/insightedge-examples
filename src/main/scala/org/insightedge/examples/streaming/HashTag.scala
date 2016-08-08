@@ -1,6 +1,6 @@
-package com.gigaspaces.insightedge.examples.streaming
+package org.insightedge.examples.streaming
 
-import com.gigaspaces.scala.annotation._
+import org.insightedge.scala.annotation._
 
 import scala.beans.BeanProperty
 
