@@ -4,7 +4,7 @@
 
 ## Introduction
 
-[InsightEdge](http://insightedge.io/) is a Hybrid transactional/analytical processing platform built on top of Spark and Data Grid.
+[InsightEdge](http://insightedge.io/) is a Hybrid transactional/analytical processing platform built on top of Spark and GigaSpaces Data Grid.
 
 This project contains examples of how standard Spark applications can use Data Grid for different purposes.
 
