@@ -1,8 +1,8 @@
-package com.gigaspaces.insightedge.examples.basic
+package org.insightedge.examples.basic
 
-import com.gigaspaces.spark.context.GigaSpacesConfig
-import com.gigaspaces.spark.implicits.basic._
-import org.apache.spark.{SparkContext, SparkConf}
+import org.apache.spark.{SparkConf, SparkContext}
+import org.insightedge.spark.context.InsightEdgeConfig
+import org.insightedge.spark.implicits.basic._
 
 import scala.util.Random
 
@@ -18,14 +18,14 @@ object SaveRdd {
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
-    val gsConfig = GigaSpacesConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-save-rdd").setMaster(master).setGigaSpaceConfig(gsConfig))
+    val config = InsightEdgeConfig(space, Some(groups), Some(locators))
+    val sc = new SparkContext(new SparkConf().setAppName("example-save-rdd").setMaster(master).setInsightEdgeConfig(config))
 
     val products = (1 to 100000).map { i => Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()) }
     println(s"Saving ${products.size} products RDD to the space")
     val rdd = sc.parallelize(products)
     rdd.saveToGrid()
-    sc.stopGigaSpacesContext()
+    sc.stopInsightEdgeContext()
   }
 
 }

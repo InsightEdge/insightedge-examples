@@ -18,9 +18,9 @@ else:
 
 print("InsightEdge config: %s %s %s" % (spaceName, lookupGroup, lookupLocator))
 
-conf.set("spark.gigaspaces.space.name", spaceName)
-conf.set("spark.gigaspaces.space.lookup.group", lookupGroup)
-conf.set("spark.gigaspaces.space.lookup.locator", lookupLocator)
+conf.set("spark.insightedge.space.name", spaceName)
+conf.set("spark.insightedge.space.lookup.group", lookupGroup)
+conf.set("spark.insightedge.space.lookup.locator", lookupLocator)
 
 sc = SparkContext(conf=conf)
 sqlContext = SQLContext(sc)

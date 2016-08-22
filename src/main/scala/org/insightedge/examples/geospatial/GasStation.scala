@@ -1,6 +1,6 @@
-package com.gigaspaces.insightedge.examples.geospatial
+package org.insightedge.examples.geospatial
 
-import com.gigaspaces.scala.annotation._
+import org.insightedge.scala.annotation._
 import org.openspaces.spatial.shapes.Point
 
 import scala.beans.BeanProperty

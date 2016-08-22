@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.gigaspaces.insightedge</groupId>
+    <groupId>org.gigaspaces.insightedge</groupId>
     <artifactId>insightedge-examples</artifactId>
     <version>1.1.0-SNAPSHOT</version>
 
@@ -16,13 +16,13 @@
     <dependencies>
         <!-- InsightEdge -->
         <dependency>
-            <groupId>com.gigaspaces.insightedge</groupId>
-            <artifactId>gigaspaces-scala</artifactId>
+            <groupId>org.gigaspaces.insightedge</groupId>
+            <artifactId>insightedge-scala</artifactId>
             <scope>${distribution.dependencies.scope}</scope>
             <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.gigaspaces.insightedge</groupId>
+            <groupId>org.gigaspaces.insightedge</groupId>
             <artifactId>insightedge-core</artifactId>
             <scope>${distribution.dependencies.scope}</scope>
             <version>1.1.0-SNAPSHOT</version>
