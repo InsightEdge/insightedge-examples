@@ -6,7 +6,7 @@
 
     <groupId>com.gigaspaces.insightedge</groupId>
     <artifactId>insightedge-examples</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <properties>
         <!--Toggling this property between provided/compile allows to run examples in cluster/IDE  -->
@@ -19,13 +19,13 @@
             <groupId>com.gigaspaces.insightedge</groupId>
             <artifactId>gigaspaces-scala</artifactId>
             <scope>${distribution.dependencies.scope}</scope>
-            <version>1.0.0</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.gigaspaces.insightedge</groupId>
             <artifactId>insightedge-core</artifactId>
             <scope>${distribution.dependencies.scope}</scope>
-            <version>1.0.0</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
 
         <!--TwitterStreaming-->
