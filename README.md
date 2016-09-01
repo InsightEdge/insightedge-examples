@@ -1,12 +1,6 @@
 # InsightEdge Examples
-##### _InsightEdge GigaSpaces convergence platform_
------------------------------------------
 
-## Introduction
-
-[InsightEdge](http://insightedge.io/) is a Hybrid transactional/analytical processing platform built on top of Spark and GigaSpaces Data Grid.
-
-This project contains examples of how standard Spark applications can use Data Grid for different purposes.
+This repository contains example [InsightEdge](https://github.com/InsightEdge/insightedge) applications.
 
 ## Requirements
 * Java 1.8
@@ -18,7 +12,7 @@ This project contains examples of how standard Spark applications can use Data G
 
 ## Building project
 
-InsightEdge jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have Maven installed and then run:
+InsightEdge jars are not published to Maven Central Repository yet. To install artifacts to your local Maven repository, make sure you have Maven installed and then run the following from InsightEdge directory:
 ```bash
 # Linux:
 ./sbin/insightedge-maven.sh
@@ -27,7 +21,7 @@ InsightEdge jars are not published to Maven Central Repository yet. To install a
 sbin\insightedge-maven.cmd
 ```
 
-This project has both SBT and Maven configurations. You can build it with next commands:
+This project has both SBT and Maven build files. You can build it with the next commands:
 
 ```bash
 # Maven
@@ -41,6 +35,7 @@ sbt clean test assembly
 ## Running examples
 
 There are several options how you can run examples:
+
 * from Web Notebook (refer to corresponding section in [InsightEdge documentation](http://insightedge.io/docs))
 * from your IDE
 * from a command line
@@ -65,7 +60,10 @@ Such command will start next components:
 
 #### Running from IDE
 
-You can run examples from your favourite IDE. Every example has a `main` method, so it can be executed as standard application.
+You can run examples from your favourite IDE. Every example has a `main` method, so it can be executed as standard application. There two important things:
+
+* enable `run-from-ide` maven profile (this will switch required dependencies to `compile` scope so they are available in classpath)
+* spark master url should be set to `local[*]` so that Spark is started in embedded mode
 
 Here is an example of run configuration for `SaveRDD` for `Intellij Idea`:
 ![IDEA run configuration](doc/images/idea-configuration.png?raw=true)
