@@ -16,6 +16,7 @@
 
 package org.insightedge.examples.geospatial
 
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
@@ -37,7 +38,12 @@ object LoadRddWithGeospatial {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-rdd-geospatial").setMaster(master).setInsightEdgeConfig(config))
+    val spark = SparkSession.builder
+      .appName("example-load-rdd-geospatial")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val stations = (1 to 100000).map { i => GasStation(i, "Station" + i, randomPoint(-50, 50)) }
     println(s"Saving ${stations.size} gas stations RDD to the space")

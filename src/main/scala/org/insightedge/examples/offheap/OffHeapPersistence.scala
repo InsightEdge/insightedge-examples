@@ -16,6 +16,7 @@
 
 package org.insightedge.examples.offheap
 
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.examples.basic.Product
@@ -37,12 +38,13 @@ object OffHeapPersistence {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sparkConfig = new SparkConf()
-      .setAppName("example-offheap")
-      .setMaster(master)
-      .setInsightEdgeConfig(config)
-      .set("spark.externalBlockStore.blockManager", "org.apache.spark.storage.InsightEdgeBlockManager")
-    val sc = new SparkContext(sparkConfig)
+    val spark = SparkSession.builder
+      .appName("example-offheap")
+      .master(master)
+      .insightEdgeConfig(config)
+      .config("spark.externalBlockStore.blockManager", "org.apache.spark.storage.InsightEdgeBlockManager")
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val rdd = sc.parallelize((1 to 10).map { i =>
       Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean())

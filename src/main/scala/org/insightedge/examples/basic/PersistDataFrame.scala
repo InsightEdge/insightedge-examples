@@ -16,7 +16,7 @@
 
 package org.insightedge.examples.basic
 
-import org.apache.spark.sql.{SQLContext, SaveMode}
+import org.apache.spark.sql.{SQLContext, SaveMode, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
@@ -34,8 +34,13 @@ object PersistDataFrame {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-persist-dataframe").setMaster(master).setInsightEdgeConfig(config))
-    val sqlContext = new SQLContext(sc)
+    val spark = SparkSession.builder
+      .appName("example-persist-dataframe")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
+    val sqlContext = spark.sqlContext
 
     val df = sqlContext.read.grid.loadClass[Product]
     println("Product schema:")
