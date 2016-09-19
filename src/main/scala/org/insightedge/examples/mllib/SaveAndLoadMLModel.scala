@@ -2,6 +2,7 @@ package org.insightedge.examples.mllib
 
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg.Vectors
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
@@ -19,7 +20,12 @@ object SaveAndLoadMLModel {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-mllib").setMaster(master).setInsightEdgeConfig(config))
+    val spark = SparkSession.builder
+      .appName("example-mllib")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val modelName = "decisionTreeModel"
     val model = createModel(sc)

@@ -1,5 +1,6 @@
 package org.insightedge.examples.basic
 
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
@@ -19,7 +20,12 @@ object SaveRdd {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-save-rdd").setMaster(master).setInsightEdgeConfig(config))
+    val spark = SparkSession.builder
+      .appName("example-save-rdd")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val products = (1 to 100000).map { i => Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()) }
     println(s"Saving ${products.size} products RDD to the space")

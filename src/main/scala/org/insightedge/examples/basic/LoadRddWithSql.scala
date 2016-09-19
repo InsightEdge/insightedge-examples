@@ -1,5 +1,6 @@
 package org.insightedge.examples.basic
 
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
@@ -17,7 +18,12 @@ object LoadRddWithSql {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-rdd-sql").setMaster(master).setInsightEdgeConfig(config))
+    val spark = SparkSession.builder
+      .appName("example-load-rdd-sql")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val rdd = sc.gridSql[Product]("quantity < 5")
     println(s"Number of products with quantity < 5: ${rdd.count()}")

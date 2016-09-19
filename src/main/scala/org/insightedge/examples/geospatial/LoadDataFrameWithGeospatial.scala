@@ -1,6 +1,6 @@
 package org.insightedge.examples.geospatial
 
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
@@ -22,13 +22,18 @@ object LoadDataFrameWithGeospatial {
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
-    val sc = new SparkContext(new SparkConf().setAppName("example-load-dataframe-geospatial").setMaster(master).setInsightEdgeConfig(config))
+    val spark = SparkSession.builder
+      .appName("example-load-dataframe-geospatial")
+      .master(master)
+      .insightEdgeConfig(config)
+      .getOrCreate()
+    val sc = spark.sparkContext
 
     val stations = (1 to 100000).map { i => GasStation(i, "Station" + i, randomPoint(-50, 50)) }
     println(s"Saving ${stations.size} gas stations RDD to the space")
     sc.parallelize(stations).saveToGrid()
 
-    val sqlContext = new SQLContext(sc)
+    val sqlContext = spark.sqlContext
     val userLocation = ShapeFactory.point(10, 10)
     val searchArea = ShapeFactory.circle(userLocation, 10)
     val df = sqlContext.read.grid.loadClass[GasStation]
