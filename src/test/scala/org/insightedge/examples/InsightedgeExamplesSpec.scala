@@ -3,7 +3,6 @@ package org.insightedge.examples
 import org.insightedge.examples.basic._
 import org.insightedge.examples.geospatial.{LoadDataFrameWithGeospatial, LoadRddWithGeospatial}
 import org.insightedge.examples.mllib.SaveAndLoadMLModel
-import org.insightedge.examples.offheap.OffHeapPersistence
 import org.openspaces.core.space.EmbeddedSpaceConfigurer
 import org.openspaces.core.{GigaSpace, GigaSpaceConfigurer}
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSpec}
@@ -38,10 +37,6 @@ class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with Before
 
   it("should successfully save and load MLModel to/from from Data Grid") {
     SaveAndLoadMLModel.main(args)
-  }
-
-  it("should successfully persist to Data Grid") {
-    OffHeapPersistence.main(args)
   }
 
   it("should successfully load rdd with geospatial SQL") {
