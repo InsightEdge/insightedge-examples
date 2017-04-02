@@ -1,10 +1,10 @@
 name := "insightedge-examples"
 
-version := "1.0.0"
+version := "1.0.1"
 
 scalaVersion := "2.10.6"
 
-val insightEdgeVersion = "1.0.0"
+val insightEdgeVersion = "1.0.1"
 
 resolvers += Resolver.mavenLocal
 resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspaces.org"
