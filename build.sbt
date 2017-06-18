@@ -2,7 +2,7 @@ name := "insightedge-examples"
 
 version := "1.1.0-SNAPSHOT"
 
-scalaVersion := "2.10.6"
+scalaVersion := "2.11.6"
 
 val insightEdgeVersion = "1.1.0-SNAPSHOT"
 
@@ -12,8 +12,8 @@ resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspace
 libraryDependencies ++= Seq(
   "org.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
   "org.gigaspaces.insightedge" % "insightedge-scala" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
-  "org.apache.spark" %% "spark-streaming-twitter" % "1.6.0",
-  "org.scalatest" %% "scalatest" % "2.0" % "test"
+  "org.apache.bahir" %% "spark-streaming-twitter" % "2.0.0",
+  "org.scalatest" % "scalatest_2.11" % "2.2.2" % "test"
 )
 
 test in assembly := {}
