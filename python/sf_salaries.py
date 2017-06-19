@@ -1,10 +1,6 @@
 import sys
 import os
-from pyspark import SparkConf, SparkContext
-from pyspark.sql import SQLContext
-
-conf = SparkConf()
-conf.setAppName("SF Salaries Example")
+from pyspark.sql import SparkSession
 
 # InsightEdge config
 if len(sys.argv) < 4:
@@ -18,29 +14,31 @@ else:
 
 print("InsightEdge config: %s %s %s" % (spaceName, lookupGroup, lookupLocator))
 
-conf.set("spark.insightedge.space.name", spaceName)
-conf.set("spark.insightedge.space.lookup.group", lookupGroup)
-conf.set("spark.insightedge.space.lookup.locator", lookupLocator)
+spark = SparkSession \
+    .builder \
+    .appName("SF Salaries Example") \
+    .config("spark.insightedge.space.name", spaceName) \
+    .config("spark.insightedge.space.lookup.group", lookupGroup) \
+    .config("spark.insightedge.space.lookup.locator", lookupLocator) \
+    .getOrCreate()
 
-sc = SparkContext(conf=conf)
-sqlContext = SQLContext(sc)
 
 # load SF salaries dataset from file
 jsonFilePath = os.path.join(os.environ["INSIGHTEDGE_HOME"], "data/sf_salaries_sample.json")
-jsonDf = sqlContext.read.json(jsonFilePath)
+jsonDf = spark.read.json(jsonFilePath)
 
 # save DataFrame to the grid
 jsonDf.write.format("org.apache.spark.sql.insightedge").mode("overwrite").save("salaries")
 
 # load DataFrame from the grid
-gridDf = sqlContext.read.format("org.apache.spark.sql.insightedge").option("collection", "salaries").load()
+gridDf = spark.read.format("org.apache.spark.sql.insightedge").option("collection", "salaries").load()
 gridDf.printSchema()
 
 # register this DataFrame as a table
 gridDf.registerTempTable("salaries")
 
 # run SQL query
-averagePay = sqlContext.sql(
+averagePay = spark.sql(
     """SELECT JobTitle, AVG(TotalPay) as AveragePay
        FROM salaries
        WHERE Year = 2012
@@ -51,4 +49,4 @@ averagePay = sqlContext.sql(
 for each in averagePay.collect():
     print("%s: %s" % (each[0], each[1]))
 
-sc.stop()
+spark.stop()
