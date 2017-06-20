@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
   "org.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
   "org.gigaspaces.insightedge" % "insightedge-scala" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
   "org.apache.bahir" %% "spark-streaming-twitter" % "2.1.0",
-  "org.scalatest" %% "scalatest" % "3.0.3" % "test"
+  "org.scalatest" % "scalatest_2.11" % "3.0.3" % "test"
 )
 
 test in assembly := {}
