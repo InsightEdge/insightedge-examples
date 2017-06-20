@@ -12,7 +12,7 @@ resolvers += "Openspaces Maven Repository" at "http://maven-repository.openspace
 libraryDependencies ++= Seq(
   "org.gigaspaces.insightedge" % "insightedge-core" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
   "org.gigaspaces.insightedge" % "insightedge-scala" % insightEdgeVersion % "provided" exclude("javax.jms", "jms"),
-  "org.apache.spark" %% "spark-streaming-twitter" % "2.1.0",
+  "org.apache.bahir" %% "spark-streaming-twitter" % "2.1.0",
   "org.scalatest" %% "scalatest" % "3.0.3" % "test"
 )
 
