@@ -43,9 +43,11 @@ object SaveRdd {
       .getOrCreate()
     val sc = spark.sparkContext
 
-    val products = (1 to 100000).map { i => Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean()) }
-    println(s"Saving ${products.size} products RDD to the space")
-    val rdd = sc.parallelize(products)
+    val productsNum = 100000
+    println(s"Saving $productsNum products RDD to the space")
+    val rdd = sc.parallelize(1 to productsNum).map { i =>
+      Product(i, "Description of product " + i, Random.nextInt(10), Random.nextBoolean())
+    }
     rdd.saveToGrid()
     sc.stopInsightEdgeContext()
   }
