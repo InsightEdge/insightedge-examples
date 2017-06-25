@@ -42,7 +42,7 @@ object PersistDataFrame {
     val sc = spark.sparkContext
     val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid.loadClass[Product]
+    val df = sqlContext.read.grid.loadDF[Product]
     println("Product schema:")
     df.printSchema()
 

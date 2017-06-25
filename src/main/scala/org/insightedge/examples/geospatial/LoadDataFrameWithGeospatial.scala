@@ -52,7 +52,7 @@ object LoadDataFrameWithGeospatial {
     val sqlContext = spark.sqlContext
     val userLocation = ShapeFactory.point(10, 10)
     val searchArea = ShapeFactory.circle(userLocation, 10)
-    val df = sqlContext.read.grid.loadClass[GasStation]
+    val df = sqlContext.read.grid.loadDF[GasStation]
     val countNearby = df.filter(df("location") geoWithin searchArea).count()
     println(s"Number of stations within 10 radius around user: $countNearby")
 
