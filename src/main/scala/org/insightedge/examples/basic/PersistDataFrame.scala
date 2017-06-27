@@ -46,7 +46,7 @@ object PersistDataFrame {
     println("Product schema:")
     df.printSchema()
 
-    df.select("id", "quantity").filter(df("quantity") < 5).write.grid.mode(SaveMode.Overwrite).save("smallStock")
+    df.select("id", "quantity").filter(df("quantity") < 5).write.mode(SaveMode.Overwrite).grid("smallStock")
     val persistedDf = sqlContext.read.grid("smallStock")
 
     val count = persistedDf.count()
