@@ -17,7 +17,6 @@
 package org.insightedge.examples.basic
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
 
@@ -43,7 +42,7 @@ object LoadRddWithSql {
 
     val rdd = sc.gridSql[Product]("quantity < 5")
     println(s"Number of products with quantity < 5: ${rdd.count()}")
-    sc.stopInsightEdgeContext()
+    spark.stopInsightEdgeContext()
   }
 
 }

@@ -16,10 +16,10 @@
 
 package org.insightedge.examples.mllib
 
+import org.apache.spark.SparkContext
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
@@ -50,7 +50,7 @@ object SaveAndLoadMLModel {
     println(s"Loading $modelName from the datagrid")
     val loadedModel = sc.loadMLInstance[KMeansModel](modelName).get
     println(s"Model ${loadedModel.getClass.getSimpleName} is loaded")
-    sc.stopInsightEdgeContext()
+    spark.stopInsightEdgeContext()
   }
 
   private def createModel(sc: SparkContext) = {
