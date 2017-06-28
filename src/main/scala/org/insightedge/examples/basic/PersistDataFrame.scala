@@ -40,14 +40,14 @@ object PersistDataFrame {
       .insightEdgeConfig(config)
       .getOrCreate()
     val sc = spark.sparkContext
-    val sqlContext = spark.sqlContext
+ //   val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid[Product]
+    val df = spark.read.grid[Product]
     println("Product schema:")
     df.printSchema()
 
     df.select("id", "quantity").filter(df("quantity") < 5).write.mode(SaveMode.Overwrite).grid("smallStock")
-    val persistedDf = sqlContext.read.grid("smallStock")
+    val persistedDf = spark.read.grid("smallStock")
 
     val count = persistedDf.count()
 

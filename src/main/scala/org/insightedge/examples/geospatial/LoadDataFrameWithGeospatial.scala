@@ -49,10 +49,10 @@ object LoadDataFrameWithGeospatial {
     println(s"Saving ${stations.size} gas stations RDD to the space")
     sc.parallelize(stations).saveToGrid()
 
-    val sqlContext = spark.sqlContext
+  //  val sqlContext = spark.sqlContext
     val userLocation = ShapeFactory.point(10, 10)
     val searchArea = ShapeFactory.circle(userLocation, 10)
-    val df = sqlContext.read.grid[GasStation]
+    val df = spark.read.grid[GasStation]
     val countNearby = df.filter(df("location") geoWithin searchArea).count()
     println(s"Number of stations within 10 radius around user: $countNearby")
 

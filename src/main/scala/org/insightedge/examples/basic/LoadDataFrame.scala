@@ -40,9 +40,9 @@ object LoadDataFrame {
       .insightEdgeConfig(config)
       .getOrCreate()
     val sc = spark.sparkContext
-    val sqlContext = spark.sqlContext
+//    val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid[Product]
+    val df = spark.read.grid[Product]
     df.printSchema()
     val count = df.filter(df("quantity") < 5).count()
     println(s"Number of products with quantity < 5: $count")
