@@ -16,43 +16,42 @@
 
 package org.insightedge.examples.basic
 
-import org.apache.spark.sql.{SQLContext, SaveMode, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.{SaveMode, SparkSession}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
 /**
   * Persists a selection of Products to Data Grid, then loads it as new DataFrame.
   */
-object PersistDataFrame {
+object PersistDataset {
 
   def main(args: Array[String]): Unit = {
     val settings = if (args.length > 0) args else Array("spark://127.0.0.1:7077", "insightedge-space", "insightedge", "127.0.0.1:4174")
     if (settings.length < 4) {
-      System.err.println("Usage: PersistDataFrame <spark master url> <space name> <space groups> <space locator>")
+      System.err.println("Usage: PersistDataset <spark master url> <space name> <space groups> <space locator>")
       System.exit(1)
     }
     val Array(master, space, groups, locators) = settings
     val config = InsightEdgeConfig(space, Some(groups), Some(locators))
     val spark = SparkSession.builder
-      .appName("example-persist-dataframe")
+      .appName("example-persist-dataset")
       .master(master)
       .insightEdgeConfig(config)
       .getOrCreate()
-    val sc = spark.sparkContext
-    val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid[Product]
+    import spark.implicits._
+
+    val ds = spark.read.grid[Product].as[Product]
     println("Product schema:")
-    df.printSchema()
+    ds.printSchema()
 
-    df.select("id", "quantity").filter(df("quantity") < 5).write.mode(SaveMode.Overwrite).grid("smallStock")
-    val persistedDf = sqlContext.read.grid("smallStock")
+    ds.filter( o => o.quantity < 5).write.mode(SaveMode.Overwrite).grid("smallStock")
+    val persistedDS = spark.read.grid("smallStock").as[Product]
 
-    val count = persistedDf.count()
+    val count = persistedDS.count()
 
     println(s"Number of products with quantity < 5: $count")
-    sc.stopInsightEdgeContext()
+    spark.stopInsightEdgeContext()
   }
 
 }

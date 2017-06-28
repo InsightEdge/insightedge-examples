@@ -42,7 +42,7 @@ object LoadDataFrame {
     val sc = spark.sparkContext
     val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid.loadClass[Product]
+    val df = sqlContext.read.grid[Product]
     df.printSchema()
     val count = df.filter(df("quantity") < 5).count()
     println(s"Number of products with quantity < 5: $count")
