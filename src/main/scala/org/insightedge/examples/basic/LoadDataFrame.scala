@@ -16,8 +16,7 @@
 
 package org.insightedge.examples.basic
 
-import org.apache.spark.sql.{SQLContext, SparkSession}
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.sql.SparkSession
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
@@ -39,14 +38,12 @@ object LoadDataFrame {
       .master(master)
       .insightEdgeConfig(config)
       .getOrCreate()
-    val sc = spark.sparkContext
-    val sqlContext = spark.sqlContext
 
-    val df = sqlContext.read.grid[Product]
+    val df = spark.read.grid[Product]
     df.printSchema()
     val count = df.filter(df("quantity") < 5).count()
     println(s"Number of products with quantity < 5: $count")
-    spark.sparkContext.stopInsightEdgeContext()
+    spark.stopInsightEdgeContext()
   }
 
 }

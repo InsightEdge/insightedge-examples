@@ -17,7 +17,6 @@
 package org.insightedge.examples.geospatial
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
 import org.openspaces.spatial.ShapeFactory
@@ -54,7 +53,7 @@ object LoadRddWithGeospatial {
     val stationsNearby = sc.gridSql[GasStation]("location spatial:within ?", Seq(searchArea))
     println(s"Number of stations within 10 radius around user: ${stationsNearby.count()}")
 
-    sc.stopInsightEdgeContext()
+    spark.stopInsightEdgeContext()
   }
 
   def randomPoint(min: Double, max: Double): Point = {
