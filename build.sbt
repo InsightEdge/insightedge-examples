@@ -1,6 +1,6 @@
 name := "insightedge-examples"
 
-val insightEdgeVersion = "1.1.0-SNAPSHOT"
+val insightEdgeVersion = "1.1.0-rc-11002-301"
 
 version := insightEdgeVersion
 
