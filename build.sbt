@@ -1,6 +1,6 @@
 name := "insightedge-examples"
 
-val insightEdgeVersion = Option(System.getProperty("insightEdgeVersion")).getOrElse("1.1.0-SNAPSHOT")
+val insightEdgeVersion = sys.props.getOrElse("insightEdgeVersion", "1.1.0-SNAPSHOT")
 
 version := insightEdgeVersion
 
