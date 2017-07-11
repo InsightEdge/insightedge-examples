@@ -36,12 +36,15 @@ sbt clean test assembly
 
 There are several options how you can run examples:
 
-* from Web Notebook (refer to corresponding section in [InsightEdge documentation](http://insightedge.io/docs))
+* from Web Notebook
 * from your IDE
 * from a command line
 
-#### Starting local environment
+#### Web Notebook 
 
+The interactive Web Notebook (based on Zeppelin) is started automatically in `demo` mode at http://127.0.0.1:8090. For more information, refer to 'Zeppelin Notebook' section in [InsightEdge documentation](http://insightedge.io/docs) 
+
+##### Starting local environment
 Prior to executing example application, you have to start the Data Grid and deploy an empty space on it. You can do it using `demo` mode:
 ```bash
 # Linux:
@@ -57,7 +60,8 @@ Such command will start next components:
     - space is deployed with name `insightedge-space`
     - lookup locator is `127.0.0.1:4174`
     - lookup group is `insightedge`
-
+* Spark monitoring UI at `127.0.0.1:8080`
+    
 #### Running from IDE
 
 You can run examples from your favourite IDE. Every example has a `main` method, so it can be executed as standard application. There two important things:
