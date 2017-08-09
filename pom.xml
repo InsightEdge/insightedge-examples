@@ -18,12 +18,6 @@
         <!-- InsightEdge -->
         <dependency>
             <groupId>org.gigaspaces.insightedge</groupId>
-            <artifactId>insightedge-scala</artifactId>
-            <scope>${distribution.dependencies.scope}</scope>
-            <version>${ie.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gigaspaces.insightedge</groupId>
             <artifactId>insightedge-core</artifactId>
             <scope>${distribution.dependencies.scope}</scope>
             <version>${ie.version}</version>
