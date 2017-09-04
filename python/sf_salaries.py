@@ -5,7 +5,7 @@ from pyspark.sql import SparkSession
 # InsightEdge config
 if len(sys.argv) < 4:
     spaceName = "insightedge-space"
-    lookupGroup = "insightedge"
+    lookupGroup = "xap-12.2.0"
     lookupLocator = "127.0.0.1:4174"
 else:
     spaceName = sys.argv[1]
