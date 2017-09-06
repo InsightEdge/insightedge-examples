@@ -38,7 +38,7 @@ import scala.collection.JavaConverters._
 object TwitterPopularTags {
 
   def main(args: Array[String]) {
-    val settings = if (args.length == 4) Array("spark://127.0.0.1:7077", args(0), args(1), args(2), args(3), "insightedge-space", "insightedge", "127.0.0.1:4174") else args
+    val settings = if (args.length == 4) Array("spark://127.0.0.1:7077", args(0), args(1), args(2), args(3), "insightedge-space", "xap-12.2.0", "127.0.0.1:4174") else args
     if (settings.length < 8) {
       System.err.println("Usage (custom cluster): TwitterPopularTags <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name> <space groups> <space locator>")
       System.err.println("Usage (default cluster): TwitterPopularTags <consumer key> <consumer secret> <access token> <access token secret>")
