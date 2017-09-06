@@ -45,7 +45,7 @@ There are several options how you can run examples:
 Prior to executing example application, you have to start the Data Grid and deploy an empty space on it. You can do it using `demo` mode:
 ```bash
 # Linux:
-./insightedge/sbin/insightedge.sh --mode demo
+./insightedge/bin/insightedge --mode demo
 
 # Windows:
 insightedge\sbin\insightedge.cmd --mode demo
@@ -141,7 +141,7 @@ insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 quickstart\py
 To stop all InsightEdge components, next command can be executed:
 ```bash
 # Linux:
-./insightedge/sbin/insightedge.sh --mode shutdown
+./insightedge/bin/insightedge --mode shutdown
 
 # Windows:
 insightedge\sbin\insightedge.cmd --mode shutdown
