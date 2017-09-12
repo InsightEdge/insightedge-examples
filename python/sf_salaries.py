@@ -3,7 +3,7 @@ import os
 from pyspark.sql import SparkSession
 
 # InsightEdge config
-if len(sys.argv) == 0:
+if len(sys.argv) == 1:
     spaceName = os.environ['INSIGHTEDGE_SPACE_NAME']
 else:
     spaceName = sys.argv[1]
