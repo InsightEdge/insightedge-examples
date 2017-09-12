@@ -38,14 +38,14 @@ import scala.collection.JavaConverters._
 object TwitterPopularTags {
 
   def main(args: Array[String]) {
-    val settings = if (args.length == 4) Array("spark://127.0.0.1:7077", args(0), args(1), args(2), args(3), "insightedge-space", "xap-12.2.0", "127.0.0.1:4174") else args
-    if (settings.length < 8) {
-      System.err.println("Usage (custom cluster): TwitterPopularTags <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name> <space groups> <space locator>")
+    val settings = if (args.length == 4) Array("spark://127.0.0.1:7077", args(0), args(1), args(2), args(3), "insightedge-space") else args
+    if (settings.length != 6) {
+      System.err.println("Usage (custom cluster): TwitterPopularTags <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name>")
       System.err.println("Usage (default cluster): TwitterPopularTags <consumer key> <consumer secret> <access token> <access token secret>")
       System.exit(1)
     }
 
-    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, spaceName, spaceGroups, spaceLocator) = settings.take(8)
+    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, spaceName) = settings.take(6)
 
     // Set the system properties so that Twitter4j library used by twitter stream
     // can use them to generate OAuth credentials
@@ -54,7 +54,7 @@ object TwitterPopularTags {
     System.setProperty("twitter4j.oauth.accessToken", accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
-    val ieConfig = InsightEdgeConfig(spaceName, Some(spaceGroups), Some(spaceLocator))
+    val ieConfig = InsightEdgeConfig(spaceName)
     val sparkConf = new SparkConf().setAppName("TwitterPopularTags").setMaster(masterUrl).setInsightEdgeConfig(ieConfig)
 
     val ssc = new StreamingContext(sparkConf, Seconds(2))

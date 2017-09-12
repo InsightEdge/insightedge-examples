@@ -25,9 +25,7 @@ import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, FunSpec}
 
 class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with BeforeAndAfterEach {
   val spaceName = "insightedge-examples-space"
-  val lookupGroup = "xap-12.2.0"
-  val lookupLocator = "localhost:4174"
-  val args = Array("local[2]", spaceName, lookupGroup, lookupLocator)
+  val args = Array("local[2]", spaceName)
 
   var datagrid: GigaSpace = _
 
@@ -64,7 +62,7 @@ class InsightedgeExamplesSpec extends FunSpec with BeforeAndAfterAll with Before
   }
 
   override protected def beforeAll() = {
-    datagrid = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("insightedge-examples-space").lookupGroups("xap-12.2.0").lookupLocators(lookupLocator)).create()
+    datagrid = new GigaSpaceConfigurer(new EmbeddedSpaceConfigurer("insightedge-examples-space")).create()
   }
 
 }
