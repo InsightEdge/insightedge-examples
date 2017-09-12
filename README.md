@@ -56,8 +56,6 @@ Such command will start next components:
 * Spark monitoring UI at `127.0.0.1:8080`
 * Data Grid manager and two containers with `1G` heap each
     - space is deployed with name `insightedge-space`
-    - lookup locator is `127.0.0.1:4174`
-    - lookup group is `insightedge`
 
 #### Web Notebook 
   		  
@@ -94,13 +92,11 @@ For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 # Linux:
 ./insightedge/bin/insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
-    ./insightedge/examples/jars/insightedge-examples.jar \
-    spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
+    ./insightedge/examples/jars/insightedge-examples.jar
 
 # Windows:
 insightedge\bin\insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
-    insightedge\quickstart\scala\insightedge-examples.jar ^
-    spark://127.0.0.1:7077 insightedge-space insightedge 127.0.0.1:4174
+    insightedge\quickstart\scala\insightedge-examples.jar
 ```
 
 If you are running local cluster with default settings (see [Running Examples](#running-examples)), you can omit arguments:

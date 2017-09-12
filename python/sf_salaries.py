@@ -3,23 +3,17 @@ import os
 from pyspark.sql import SparkSession
 
 # InsightEdge config
-if len(sys.argv) < 4:
-    spaceName = "insightedge-space"
-    lookupGroup = "xap-12.2.0"
-    lookupLocator = "127.0.0.1:4174"
+if len(sys.argv) == 1:
+    spaceName = os.environ['INSIGHTEDGE_SPACE_NAME']
 else:
     spaceName = sys.argv[1]
-    lookupGroup = sys.argv[2]
-    lookupLocator = sys.argv[3]
 
-print("InsightEdge config: %s %s %s" % (spaceName, lookupGroup, lookupLocator))
+print("InsightEdge config: %s" % spaceName)
 
 spark = SparkSession \
     .builder \
     .appName("SF Salaries Example") \
     .config("spark.insightedge.space.name", spaceName) \
-    .config("spark.insightedge.space.lookup.group", lookupGroup) \
-    .config("spark.insightedge.space.lookup.locator", lookupLocator) \
     .getOrCreate()
 
 
