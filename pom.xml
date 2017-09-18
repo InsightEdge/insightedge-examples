@@ -6,12 +6,12 @@
 
     <groupId>org.gigaspaces.insightedge</groupId>
     <artifactId>insightedge-examples</artifactId>
-    <version>2.1.0-SNAPSHOT</version>
+    <version>12.2.0-ga-18015-643</version>
 
     <properties>
         <!--Toggling this property between provided/compile allows to run examples in cluster/IDE  -->
         <distribution.dependencies.scope>provided</distribution.dependencies.scope>
-        <ie.version>2.1.0-SNAPSHOT</ie.version>
+        <ie.version>12.2.0-ga-18015-643</ie.version>
     </properties>
 
     <dependencies>
