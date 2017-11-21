@@ -69,7 +69,7 @@ You can run examples from your favourite IDE. Every example has a `main` method,
 * spark master url should be set to `local[*]` so that Spark is started in embedded mode
 
 Here is an example of run configuration for `SaveRDD` for `Intellij Idea`:
-![IDEA run configuration](doc/images/idea-configuration.png?raw=true)
+![IDEA run configuration](doc/images/Screenshot from 2017-11-21 11-49-49.png?raw=true)
 
 With this configuration, example will run on local Spark cluster and save the generated RDD to Data Grid to specified space.
 
