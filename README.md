@@ -42,13 +42,21 @@ There are several options how you can run examples:
 
 #### Starting local environment
 
+# Update setenv-overide (open source only )
+# Linux
+    update /insightedge/bin/setenv-overide.sh    
+     export SPARK_LOCAL_IP=127.0.0.1
+# Windows
+    update /insightedge/bin/setenv-overide.bat
+     set SPARK_LOCAL_IP=127.0.0.1
+
 Prior to executing example application, you have to start the Data Grid and deploy an empty space on it. You can do it using `demo` mode:
 ```bash
 # Linux:
-./insightedge/bin/insightedge --mode demo
+./insightedge/bin/insightedge demo
 
 # Windows:
-insightedge\sbin\insightedge.cmd --mode demo
+insightedge\sbin\insightedge.cmd demo
 ```
 
 Such command will start next components:
@@ -133,15 +141,13 @@ insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 quickstart\py
 ```
 
 #### Stopping local environment
+## open version
+    Ctrl C
 
+## Premium version
 To stop all InsightEdge components, next command can be executed:
-```bash
-# Linux:
-./insightedge/bin/insightedge --mode shutdown
+./insightedge/bin/insightedge host kill-agent
 
-# Windows:
-insightedge\sbin\insightedge.cmd --mode shutdown
-```
 
 
 ## Troubleshooting
