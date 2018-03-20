@@ -40,13 +40,13 @@ There are several options how you can run examples:
 * from your IDE
 * from a command line
 
-## Configure insighredge/bin/setenv-overide
+## Configure insighredge/bin/setenv-overides
  
 ###### Linux
-    update /insightedge/bin/setenv-overide.sh    
+    update /insightedge/bin/setenv-overides.sh    
      export SPARK_LOCAL_IP=127.0.0.1
 ##### Windows
-    update /insightedge/bin/setenv-overide.bat
+    update /insightedge/bin/setenv-overides.bat
      set SPARK_LOCAL_IP=127.0.0.1
 
 #### Starting local environment
@@ -59,7 +59,7 @@ Prior to executing example application, you have to start the Data Grid and depl
 ./insightedge/bin/insightedge demo
 
 # Windows:
-insightedge\sbin\insightedge.cmd demo
+insightedge\bin\insightedge.bat demo
 ```
 
 Such command will start next components:
@@ -149,7 +149,7 @@ Ctrl C
 
 ##### Premium version
 To stop all InsightEdge components, next command can be executed:
-./insightedge/bin/insightedge host kill-agent
+./insightedge/bin/insightedge.bat  host kill-agent
 
 
 
