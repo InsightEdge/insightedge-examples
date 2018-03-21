@@ -40,14 +40,18 @@ There are several options how you can run examples:
 * from your IDE
 * from a command line
 
-## Configure insighredge/bin/setenv-overides
+## Configure insightedge/bin/setenv-overrides
  
-###### Linux
-    update /insightedge/bin/setenv-overides.sh    
-     export SPARK_LOCAL_IP=127.0.0.1
+##### Linux
+Add to /insightedge/bin/setenv-overrides.sh:
+```bash
+export SPARK_LOCAL_IP=127.0.0.1
+```
 ##### Windows
-    update /insightedge/bin/setenv-overides.bat
-     set SPARK_LOCAL_IP=127.0.0.1
+Add to /insightedge/bin/setenv-overrides.bat:
+```bash
+set SPARK_LOCAL_IP=127.0.0.1
+```
 
 #### Starting local environment
 
