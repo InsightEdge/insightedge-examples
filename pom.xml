@@ -8,6 +8,13 @@
     <artifactId>insightedge-examples</artifactId>
     <version>12.3.1-SNAPSHOT</version>
 
+    <repositories>
+        <repository>
+            <id>org.openspaces</id>
+            <url>http://maven-repository.openspaces.org</url>
+        </repository>
+    </repositories>
+
     <properties>
         <!--Toggling this property between provided/compile allows to run examples in cluster/IDE  -->
         <distribution.dependencies.scope>provided</distribution.dependencies.scope>
