@@ -93,12 +93,12 @@ With this configuration, example will run on local Spark cluster and save the ge
 You can build the project and submit examples as Spark applications with the next command:
 ```bash
 # Linux:
-./insightedge/bin/insightedge-submit --class {main class name} --master {Spark master URL} \
+./insightedge/spark/bin/spark-submit --class {main class name} --master {Spark master URL} \
     {insightedge-examples.jar location} \
     {Spark master URL} {space name} {lookup group} {lookup locator}
 
 # Windows:
-insightedge\bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
+insightedge\spark\bin\spark-submit --class {main class name} --master {Spark master URL} ^
     {insightedge-examples.jar location} ^
     {Spark master URL} {space name} {lookup group} {lookup locator}
 ```
@@ -106,22 +106,22 @@ insightedge\bin\insightedge-submit --class {main class name} --master {Spark mas
 For example, `SaveRDD` can be submitted with the next syntax:
 ```bash
 # Linux:
-./insightedge/bin/insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
+./insightedge/spark/bin/spark-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 \
     ./insightedge/examples/jars/insightedge-examples.jar
 
 # Windows:
-insightedge\bin\insightedge-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
+insightedge\spark\bin\spark-submit --class org.insightedge.examples.basic.SaveRdd --master spark://127.0.0.1:7077 ^
     insightedge\quickstart\scala\insightedge-examples.jar
 ```
 
 If you are running local cluster with default settings (see [Running Examples](#running-examples)), you can omit arguments:
 ```bash
 # Linux:
-./insightedge/bin/insightedge-submit --class {main class name} --master {Spark master URL} \
+./insightedge/spark/bin/spark-submit --class {main class name} --master {Spark master URL} \
     {insightedge-examples.jar location}
 
 # Windows:
-insightedge\bin\insightedge-submit --class {main class name} --master {Spark master URL} ^
+insightedge\spark\bin\spark-submit --class {main class name} --master {Spark master URL} ^
     {insightedge-examples.jar location}
 ```
 
@@ -132,19 +132,19 @@ insightedge\bin\insightedge-submit --class {main class name} --master {Spark mas
 You can run Python examples with
 ```bash
 # Linux:
-./insightedge/bin/insightedge-submit --master {Spark master URL} {path to .py file}
+./insightedge/spark/bin/spark-submit --master {Spark master URL} {path to .py file}
 
 # Windows:
-insightedge\bin\insightedge-submit --master {Spark master URL} {path to .py file}
+insightedge\spark\bin\spark-submit --master {Spark master URL} {path to .py file}
 ```
 
 For example,
 ```bash
 # Linux:
-./insightedge/bin/insightedge-submit --master spark://127.0.0.1:7077 ./quickstart/python/sf_salaries.py
+./insightedge/spark/bin/spark-submit --master spark://127.0.0.1:7077 ./quickstart/python/sf_salaries.py
 
 # Windows:
-insightedge\bin\insightedge-submit --master spark://127.0.0.1:7077 quickstart\python\sf_salaries.py
+insightedge\spark\bin\spark-submit --master spark://127.0.0.1:7077 quickstart\python\sf_salaries.py
 ```
 
 #### Stopping local environment
