@@ -16,6 +16,7 @@
 
 package org.insightedge.examples.basic
 
+import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.basic._
@@ -26,7 +27,9 @@ import org.insightedge.spark.implicits.basic._
 object LoadRddWithSql {
 
   def main(args: Array[String]): Unit = {
-    val settings = if (args.length > 0) args else Array("spark://127.0.0.1:7077", sys.env("INSIGHTEDGE_SPACE_NAME"))
+    val settings = if (args.length > 0) args else Array( new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
+      sys.env.getOrElse(InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME, InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME_DEFAULT))
+
     if (settings.length != 2) {
       System.err.println("Usage: LoadRddWithSql <spark master url> <space name>")
       System.exit(1)

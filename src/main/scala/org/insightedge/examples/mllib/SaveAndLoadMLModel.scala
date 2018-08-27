@@ -16,10 +16,10 @@
 
 package org.insightedge.examples.mllib
 
-import org.apache.spark.SparkContext
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.{SparkConf, SparkContext}
 import org.insightedge.spark.context.InsightEdgeConfig
 import org.insightedge.spark.implicits.all._
 
@@ -29,7 +29,9 @@ import org.insightedge.spark.implicits.all._
 object SaveAndLoadMLModel {
 
   def main(args: Array[String]): Unit = {
-    val settings = if (args.length > 0) args else Array("spark://127.0.0.1:7077", sys.env("INSIGHTEDGE_SPACE_NAME"))
+    val settings = if (args.length > 0) args else Array( new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
+      sys.env.getOrElse(InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME, InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME_DEFAULT))
+
     if (settings.length != 2) {
       System.err.println("Usage: SaveAndLoadMLModel <spark master url> <space name>")
       System.exit(1)
