@@ -38,9 +38,14 @@ import scala.collection.JavaConverters._
 object TwitterPopularTags {
 
   def main(args: Array[String]) {
+    val initConfig = InsightEdgeConfig.fromSparkConf(new SparkConf())
 
-    val settings = if (args.length == 4) Array(new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
-      args(0), args(1), args(2), args(3), sys.env.getOrElse(InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME, InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME_DEFAULT)) else args
+    //args: <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name>
+    //or  : <consumer key> <consumer secret> <access token> <access token secret>
+    val settings =  if (args.length > 4) args
+    else if (args.length == 4) Array( new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
+      args(0), args(1), args(2), args(3), initConfig.spaceName)
+    else Array.empty
 
     if (settings.length != 6) {
       System.err.println("Usage (custom cluster): TwitterPopularTags <spark master url> <consumer key> <consumer secret> <access token> <access token secret> <space name>")
@@ -48,7 +53,7 @@ object TwitterPopularTags {
       System.exit(1)
     }
 
-    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, spaceName) = settings.take(6)
+    val Array(masterUrl, consumerKey, consumerSecret, accessToken, accessTokenSecret, space) = settings.take(6)
 
     // Set the system properties so that Twitter4j library used by twitter stream
     // can use them to generate OAuth credentials
@@ -57,7 +62,7 @@ object TwitterPopularTags {
     System.setProperty("twitter4j.oauth.accessToken", accessToken)
     System.setProperty("twitter4j.oauth.accessTokenSecret", accessTokenSecret)
 
-    val ieConfig = InsightEdgeConfig(spaceName)
+    val ieConfig = initConfig.copy(spaceName = space)
     val sparkConf = new SparkConf().setAppName("TwitterPopularTags").setMaster(masterUrl).setInsightEdgeConfig(ieConfig)
 
     val ssc = new StreamingContext(sparkConf, Seconds(2))

@@ -27,19 +27,23 @@ import org.insightedge.spark.implicits.basic._
 object LoadRdd {
 
   def main(args: Array[String]): Unit = {
-    val settings = if (args.length > 0) args else Array( new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
-      sys.env.getOrElse(InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME, InsightEdgeConfig.INSIGHTEDGE_SPACE_NAME_DEFAULT))
+    val initConfig = InsightEdgeConfig.fromSparkConf(new SparkConf())
+
+    //args: <spark master url> <space name>
+    val settings =  if (args.length > 0) args
+    else Array( new SparkConf().get("spark.master", InsightEdgeConfig.SPARK_MASTER_LOCAL_URL_DEFAULT),
+      initConfig.spaceName)
 
     if (settings.length != 2) {
       System.err.println("Usage: LoadRdd <spark master url> <space name>")
       System.exit(1)
     }
     val Array(master, space) = settings
-    val config = InsightEdgeConfig(space)
+    val ieConfig = initConfig.copy(spaceName = space)
     val spark = SparkSession.builder
       .appName("example-load-rdd")
       .master(master)
-      .insightEdgeConfig(config)
+      .insightEdgeConfig(ieConfig)
       .getOrCreate()
     val sc = spark.sparkContext
 
